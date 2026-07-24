@@ -59,6 +59,8 @@ Backends read per-capture settings from the `Snapshot` (e.g. `ViewportWidth` for
 
 ## Verification
 
+`go test ./...` covers the pure-Go core: the `textlayer` normalizer/matcher (substring-with-gaps semantics, UTF-16 offset provenance, quotes/hyphens/accents/CJK, container sniffing and HTML/MHT embed round-trips) and the tesseract TSV parser. Browser-driven behavior (capture, mark, pdf) is verified end to end against the reference sites below.
+
 Reference sites: `https://www.apple.com` (videos, product tiles), `https://robinsonarmament.com` (age gate, hero video, carousel), `https://zh.wikipedia.org/wiki/Wikipedia:%E9%A6%96%E9%A1%B5` (CJK, logo SVGs). For canvas/WebGL/iframe work: `https://get.webgl.org` (WebGL cube, strict CSP), `https://www.chartjs.org` (2D chart canvases), and the MDN canvas-animations tutorial (cross-origin sample iframes in shadow DOM). Capture, then screenshot **offline** so missing embeds fail visibly:
 
 ```bash
